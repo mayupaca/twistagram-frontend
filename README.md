@@ -1,6 +1,9 @@
-# Getting Started with Create React App
-
+# Twistagram
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Tech stack
+- React
+- MUI
 
 ## Available Scripts
 
