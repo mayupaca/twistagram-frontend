@@ -11,6 +11,7 @@ import React from "react";
 import SidebarFriend from "../sidebarFriend/SidebarFriend";
 import "./Sidebar.css";
 import { Users } from "../../dummyData";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -18,8 +19,10 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <Home className="sidebarIcon" />
-            <span className="sidebatListItemText">Home</span>
+            <Home className="sidebarIcon"  />
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <span className="sidebatListItemText">Home</span>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <Search className="sidebarIcon" />
@@ -39,7 +42,9 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
-            <span className="sidebatListItemText">Profile</span>
+            <Link to="/profile/shincode" style={{ textDecoration: "none", color: "black" }}>
+              <span className="sidebatListItemText">Profile</span>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <Settings className="sidebarIcon" />
