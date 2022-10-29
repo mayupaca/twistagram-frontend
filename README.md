@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Tech stack
 - React
 - MUI
+- axios
 
 ## Available Scripts
 
