@@ -4,6 +4,8 @@ import "./Post.css";
 import { Users } from "../../dummyData";
 
 export default function Post({ post }) {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+
   // const user = Users.filter(user => user.id === 1)
   const [like, setLike] = useState(post.like);
   // Likeが押されているかどうか確認
@@ -22,6 +24,7 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               src={
+                PUBLIC_FOLDER +
                 Users.filter((user) => user.id === post.id)[0].profilePicture
               }
               alt=""
@@ -38,12 +41,12 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img src={post.photo} alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.photo} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
-              src="./assets/heart.png"
+              src={PUBLIC_FOLDER + "/heart.png"}
               alt=""
               className="likeIcon"
               onClick={() => handleLike()}
