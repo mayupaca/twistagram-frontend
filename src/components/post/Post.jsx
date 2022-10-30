@@ -1,7 +1,9 @@
 import { MoreVert } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
-import { Users } from "../../dummyData";
+import axios from "axios";
+
+// import { Users } from "../../dummyData";
 
 export default function Post({ post }) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -11,6 +13,22 @@ export default function Post({ post }) {
   // Likeが押されているかどうか確認
   // false押されてない
   const [isLiked, setIsLiked] = useState(false);
+
+  const [user, setUser] = useState({});
+  // apiをたたく
+  useEffect(() => {
+    const fetchUser = async () => {
+      // axiosの.getメソッドを使ってデータベースからデータを取ってくる
+      const response = await axios.get(
+        // 投稿したuserのuserid
+        `/users/${post.userId}`
+      );
+      console.log(response);
+      setUser(response.data);
+    };
+    fetchUser();
+    // 一回だけapiをたたきたいから最後に[]をつける
+  }, []);
 
   const handleLike = () => {
     // likedだったらlikeを一つ減らす
@@ -22,16 +40,9 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={
-                PUBLIC_FOLDER +
-                Users.filter((user) => user.id === post.id)[0].profilePicture
-              }
-              alt=""
-              className="postProfileImg"
-            />
+            <img src={user.profilePicture} alt="" className="postProfileImg" />
             <span className="postUsername">
-              {Users.filter((user) => user.id === post.id)[0].username}
+              {user.username}
             </span>
             <span className="postDate">{post.date}</span>
           </div>
