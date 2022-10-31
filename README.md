@@ -2,9 +2,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Tech stack
+- HTML & CSS
 - React
 - MUI
 - axios
+- timeago.js
 
 ## Available Scripts
 
