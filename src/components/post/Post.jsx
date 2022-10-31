@@ -2,6 +2,8 @@ import { MoreVert } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import "./Post.css";
 import axios from "axios";
+import { format } from "timeago.js";
+
 
 // import { Users } from "../../dummyData";
 
@@ -44,7 +46,7 @@ export default function Post({ post }) {
             <span className="postUsername">
               {user.username}
             </span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{format (post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
