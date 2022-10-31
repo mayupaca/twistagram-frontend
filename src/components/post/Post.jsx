@@ -9,7 +9,7 @@ export default function Post({ post }) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // const user = Users.filter(user => user.id === 1)
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   // Likeが押されているかどうか確認
   // false押されてない
   const [isLiked, setIsLiked] = useState(false);
@@ -52,7 +52,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img src={PUBLIC_FOLDER + post.photo} alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
