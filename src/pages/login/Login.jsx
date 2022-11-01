@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Login.css";
 
 export default function Login() {
+  // useRefを使って、form>inputの値を簡単に取ってくる
+  const email = useRef();
+  const password = useRef();
+  // console.log(email);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email.current.value);
+    console.log(password.current.value);
+  };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -10,14 +21,27 @@ export default function Login() {
           <div className="loginDesc">Let's enjoy!!</div>
         </div>
         <div className="loginRight">
-          <div className="loginBox">
+          <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
             <p className="loginMsg">Login here!</p>
-            <input type="text" className="loginInput" placeholder="email" />
-            <input type="text" className="loginInput" placeholder="password" />
+            <input
+              type="email"
+              className="loginInput"
+              placeholder="email"
+              required
+              ref={email}
+            />
+            <input
+              type="password"
+              className="loginInput"
+              placeholder="password"
+              required
+              minLength="6"
+              ref={password}
+            />
             <button className="loginButton">Login</button>
             <span className="loginForgot">Do you forget your password?</span>
             <button className="loginRegisterButton">Register here</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
