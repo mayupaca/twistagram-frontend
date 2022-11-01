@@ -22,7 +22,8 @@ export default function Timeline({ username }) {
     };
     fetchPosts();
     // 一回だけapiをたたきたいから最後に[]をつける
-  }, []);
+    // usernameが変わるたびにapi(axios.get(`/posts/profile/${username}`))がたたかれる
+  }, [username]);
 
   return (
     <div className="timeline">

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Post.css";
 import axios from "axios";
 import { format } from "timeago.js";
-
+import { Link } from "react-router-dom";
 
 // import { Users } from "../../dummyData";
 
@@ -23,14 +23,16 @@ export default function Post({ post }) {
       // axiosの.getメソッドを使ってデータベースからデータを取ってくる
       const response = await axios.get(
         // 投稿したuserのuserid
-        `/users/${post.userId}`
+        `/users?userId=${post.userId}`
       );
-      console.log(response);
+      // console.log(response);
       setUser(response.data);
     };
     fetchUser();
     // 一回だけapiをたたきたいから最後に[]をつける
-  }, []);
+    // post.userIdが変わるたびにapiが呼び出される
+    // postが投稿されるたびに更新される
+  }, [post.userId]);
 
   const handleLike = () => {
     // likedだったらlikeを一つ減らす
@@ -42,11 +44,17 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src={user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="postProfileImg" />
-            <span className="postUsername">
-              {user.username}
-            </span>
-            <span className="postDate">{format (post.createdAt)}</span>
+            <Link to={`/profile/${user.username}`}>
+              <img
+                src={
+                  user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                }
+                alt=""
+                className="postProfileImg"
+              />
+            </Link>
+            <span className="postUsername">{user.username}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />

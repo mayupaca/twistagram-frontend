@@ -5,22 +5,24 @@ import Timeline from "../../components/timeline/Timeline";
 import Topbar from "../../components/topbar/Topbar";
 import "./Profile.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [user, setUser] = useState({});
+  const username = useParams().username;
   // apiをたたく
   useEffect(() => {
     const fetchUser = async () => {
       // axiosの.getメソッドを使ってデータベースからデータを取ってくる
-      const response = await axios.get(`/users?username=mayumura`);
+      const response = await axios.get(`/users?username=${username}`);
       console.log(response);
       setUser(response.data);
     };
     fetchUser();
     // 一回だけapiをたたきたいから最後に[]をつける
-  }, []);
+  }, [username]);
   return (
     <>
       <Topbar />
@@ -30,12 +32,14 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src={PUBLIC_FOLDER + "/post/3.jpeg"}
+                src={user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"}
                 alt=""
                 className="profileCoverImg"
               />
               <img
-                src={PUBLIC_FOLDER + "/person/1.jpeg"}
+                src={
+                  user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                }
                 alt=""
                 className="profileUserImg"
               />
@@ -46,7 +50,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Timeline username="mayumura" />
+            <Timeline username={username} />
             <Rightbar user={user} />
           </div>
         </div>
