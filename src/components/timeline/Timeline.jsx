@@ -10,16 +10,16 @@ import { AuthContext } from "../../state/AuthContext";
 export default function Timeline({ username }) {
   const [posts, setPosts] = useState([]);
 
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   // apiをたたく
   useEffect(() => {
     const fetchPosts = async () => {
       // axiosの.getメソッドを使ってデータベースからデータを取ってくる
       const response = username
-      // usernameがあったらprofileのtimelineに自分の投稿だけ見れるようにしたい
-        ? await axios.get(`/posts/profile/${username}`)
-      // usernameがなかったら...
-        : await axios.get(`/posts/timeline/${user._id}`);
+        ? // usernameがあったらprofileのtimelineに自分の投稿だけ見れるようにしたい
+          await axios.get(`/posts/profile/${username}`)
+        : // usernameがなかったら...
+          await axios.get(`/posts/timeline/${user._id}`);
       // console.log(response);
       setPosts(response.data);
     };

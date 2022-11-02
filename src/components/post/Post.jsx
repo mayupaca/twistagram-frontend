@@ -1,9 +1,10 @@
 import { MoreVert } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Post.css";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../state/AuthContext";
 
 // import { Users } from "../../dummyData";
 
@@ -15,8 +16,11 @@ export default function Post({ post }) {
   // Likeが押されているかどうか確認
   // false押されてない
   const [isLiked, setIsLiked] = useState(false);
-
+  //このuserは投稿したuser
   const [user, setUser] = useState({});
+  // likeしたuser
+  const { user: likedUser } = useContext(AuthContext);
+
   // apiをたたく
   useEffect(() => {
     const fetchUser = async () => {
@@ -34,7 +38,13 @@ export default function Post({ post }) {
     // postが投稿されるたびに更新される
   }, [post.userId]);
 
-  const handleLike = () => {
+  const handleLike = async() => {
+    try {
+      // likeのapiをたたく
+      await axios.put(`/posts/${post._id}/like`, {userId: likedUser._id})
+    } catch (err) {
+      console.log(err)
+    }
     // likedだったらlikeを一つ減らす
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);

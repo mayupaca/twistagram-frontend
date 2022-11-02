@@ -11,7 +11,7 @@ const initialState = {
     username: "mayumura",
     email: "mayumura@example.com",
     password: "asdfgh",
-    profilePicture: "",
+    profilePicture: "/person/UsaMaro.png",
     coverPicture: "",
     followers: [],
     followings: [],
