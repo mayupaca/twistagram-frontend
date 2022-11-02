@@ -4,11 +4,15 @@ import { AuthContext } from "../../state/AuthContext";
 // import { useParams } from "react-router-dom";
 import "./Share.css";
 import axios from "axios";
+import { useState } from "react";
 
 export default function Share() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useContext(AuthContext);
   const desc = useRef();
+
+  const [file, setFile] = useState(null);
+  console.log(file);
   // create postのapiたたく
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +22,29 @@ export default function Share() {
       // 投稿したpost内容
       desc: desc.current.value,
     };
+
+    if (file) {
+      // key valueでデータを残せるFormData
+      const data = new FormData();
+      // file.nameだけだと、名前が被ったときエラーになる
+      // Data.nowをつけて名前が被っても大丈夫にする
+      const fileName = Date.now() + file.name;
+      // key="name", value=fileName保存
+      // .appendで保存
+      data.append("name", fileName);
+      data.append("file", file);
+      // newPostのimgにもfile付加する
+      newPost.img = fileName;
+
+      try {
+        // 画像のAPI
+        // ↑の情報が含まれていたらデータが保存される
+        await axios.post("/upload", data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     try {
       await axios.post("/posts", newPost);
       window.location.reload();
@@ -62,10 +89,17 @@ export default function Share() {
         <hr className="shareHr" />
         <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
           <div className="shareOptions">
-            <div className="shareOption">
+            <label className="shareOption" htmlFor="file">
               <Image className="shareIcon" htmlColor="blue" />
               <span className="shareOptionText">Picture</span>
-            </div>
+              <input
+                type="file"
+                id="file"
+                accept=".png, .jpeg, .jpg"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </label>
             <div className="shareOption">
               <Gif className="shareIcon" htmlColor="hotpink" />
               <span className="shareOptionText">GIF</span>
