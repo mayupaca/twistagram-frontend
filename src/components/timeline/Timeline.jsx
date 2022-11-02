@@ -21,7 +21,12 @@ export default function Timeline({ username }) {
         : // usernameがなかったら...
           await axios.get(`/posts/timeline/${user._id}`);
       // console.log(response);
-      setPosts(response.data);
+      // 登校時間が新しい順に並べる
+      setPosts(
+        response.data.sort((post1, post2) => {
+          return new Date(post2.createdAt) - new Date(post1.createdAt);
+        })
+      );
     };
     fetchPosts();
     // 一回だけapiをたたきたいから最後に[]をつける
