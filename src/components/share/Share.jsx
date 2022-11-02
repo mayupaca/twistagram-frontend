@@ -1,10 +1,4 @@
-import {
-  Analytics,
-  Face,
-  Gif,
-  Image,
-  LineAxisOutlined,
-} from "@mui/icons-material";
+import { Analytics, Face, Gif, Image } from "@mui/icons-material";
 import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../state/AuthContext";
 // import { useParams } from "react-router-dom";
