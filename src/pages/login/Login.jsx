@@ -9,7 +9,7 @@ export default function Login() {
   const email = useRef();
   const password = useRef();
   // dispatchを使いたいからglobalで使えるAuthContextをimportする
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   // console.log(email);
 
   const handleSubmit = (e) => {

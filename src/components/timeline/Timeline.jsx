@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "../post/Post";
 import Share from "../share/Share";
 import "./Timeline.css";
 import axios from "axios";
+import { AuthContext } from "../../state/AuthContext";
 // import { Posts } from "../../dummyData";
 // usernameをpropsとしてProfile.jsxにわたす
 // usernameがあるかないかでprofileに表示させる内容を分岐させる
 export default function Timeline({ username }) {
   const [posts, setPosts] = useState([]);
+
+  const {user} = useContext(AuthContext)
   // apiをたたく
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,14 +19,14 @@ export default function Timeline({ username }) {
       // usernameがあったらprofileのtimelineに自分の投稿だけ見れるようにしたい
         ? await axios.get(`/posts/profile/${username}`)
       // usernameがなかったら...
-        : await axios.get("/posts/timeline/635697b796721dc5c65e122a");
+        : await axios.get(`/posts/timeline/${user._id}`);
       // console.log(response);
       setPosts(response.data);
     };
     fetchPosts();
     // 一回だけapiをたたきたいから最後に[]をつける
     // usernameが変わるたびにapi(axios.get(`/posts/profile/${username}`))がたたかれる
-  }, [username]);
+  }, [username, user._id]);
 
   return (
     <div className="timeline">
