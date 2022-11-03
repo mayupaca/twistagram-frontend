@@ -7,6 +7,7 @@ You need [Twistagram backend repository](https://github.com/mayupaca/twistagram-
 - React
 - MUI
 - axios
+- react-router-dom
 - timeago.js
 
 ## Available Scripts
