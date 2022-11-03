@@ -12,9 +12,7 @@ You need [Twistagram backend repository](https://github.com/mayupaca/twistagram-
 - timeago.js
 
 ## Screenshots
-https://user-images.githubusercontent.com/47727645/199828589-7c234762-8586-4ec1-bdf0-1fa8d1976da4.mp4 \
-https://user-images.githubusercontent.com/47727645/199830078-2cdd404d-73b2-4643-8369-b659dd4d24f3.mp4 \
-https://user-images.githubusercontent.com/47727645/199830105-b63833af-2497-4f2c-8e83-24d9997dec02.mp4 \
+
 
 
 ## Available Scripts
