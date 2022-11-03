@@ -3,7 +3,8 @@ Twistagram is a MERN stack project. This is a social media app that usually you 
 You need [Twistagram backend repository](https://github.com/mayupaca/twistagram-backend) to run this project.
 
 ## Frontend Tech stack
-- HTML and CSS
+- HTML
+- CSS
 - React
 - MUI
 - axios
