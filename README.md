@@ -12,8 +12,17 @@ You need [Twistagram backend repository](https://github.com/mayupaca/twistagram-
 - timeago.js
 
 ## Screenshots
+> Home
+<img width="1301" alt="twistagram_home" src="https://user-images.githubusercontent.com/47727645/200001478-c9f29b53-9262-4770-95b7-3ed59981e716.png">
 
+> Profile page
+<img width="1301" alt="twistagram_profile" src="https://user-images.githubusercontent.com/47727645/200001691-2c126cfc-c821-4fd3-98f8-277a9a250904.png">
 
+> Register
+<img width="1313" alt="twistagram_register" src="https://user-images.githubusercontent.com/47727645/200001716-76555bd3-e3ce-4ab0-bd36-aace22c2e94c.png">
+
+> Login
+<img width="1314" alt="twistagram_login" src="https://user-images.githubusercontent.com/47727645/200001736-8e7efb64-2723-40e4-81ae-15f163f98178.png">
 
 ## Available Scripts
 
@@ -26,6 +35,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+## Additional features in the future
+- Search
+- Notifications
+- Messages
+- Bookmarks
+- Japanese
+- Dark mode
 
 
 
